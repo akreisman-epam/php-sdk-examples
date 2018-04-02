@@ -1,0 +1,22 @@
+{
+    "name": "hyperwallet/php-sdk-examples",
+    "authors": [
+        {
+            "name": "akreisman-epam",
+            "email": "andrii_kreisman@epam.com"
+        }
+    ],
+    "autoload": {
+      "psr-4": { "Utils\\": "src/Utils" }
+
+    },
+    "repositories": [{
+      "type": "path",
+      "url": "./../php-sdk"
+    }],
+    "require": {
+      "hyperwallet/sdk":"dev-master",
+      "php": ">=5.5.9",
+      "guzzlehttp/guzzle": "^6.2"
+    }
+}

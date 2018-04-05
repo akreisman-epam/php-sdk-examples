@@ -1,16 +1,22 @@
 <?php
 require_once (dirname(__FILE__) . '/../../vendor/autoload.php');
 
-$username = $argv[2];
-$password = $argv[3];
-$programToken = urldecode($argv[4]);
-$userToken = urldecode($argv[5]);
-$cardNumber  = urldecode($argv[6]);
+$username = $argv[1];
+$password = $argv[2];
+$programToken = urldecode($argv[3]);
+$userToken = urldecode($argv[4]);
+$cardNumber  = urldecode($argv[5]);
 
-$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password);
+$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken);
 
-$array=array($programToken, 'ACTIVATED', '2017-11-09T22:50:14', 'US', 'USD', 'DEBIT', $cardNumber, 'VISA', '2018-11');
-$bankCard = new \Hyperwallet\Model\BankCard($array);
+$UTC = new \DateTimeZone("UTC");
+$bankCard = new \Hyperwallet\Model\BankCard();
+$bankCard
+    ->setCardNumber($cardNumber)
+    ->setTransferMethodCountry('US')
+    ->setTransferMethodCurrency('USD')
+    ->setDateOfExpiry(new \DateTime('2020-01-1', $UTC))
+    ->setType('BANK_CARD');
 
 try {
     $bankCard = $hyperwallet->createBankCard($userToken, $bankCard);

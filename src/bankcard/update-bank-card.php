@@ -1,19 +1,20 @@
 <?php
 require_once (dirname(__FILE__) . '/../../vendor/autoload.php');
 
-$username = $argv[2];
-$password = $argv[3];
-$programToken = urldecode($argv[4]);
-$userToken = urldecode($argv[5]);
-$bankCardToken  = urldecode($argv[6]);
+$username = $argv[1];
+$password = $argv[2];
+$programToken = urldecode($argv[3]);
+$userToken = urldecode($argv[4]);
+$bankCardToken  = urldecode($argv[5]);
 $dateOfExpiry   = urldecode($argv[6]);
 
-$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password);
+$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken);
 
-$data =array();
-$data['token'] = $bankCardToken;
-$data['dateOfExpiry']  = $dateOfExpiry;
-$bankCard = new \Hyperwallet\Model\BankCard($data);
+$UTC = new \DateTimeZone("UTC");
+
+$bankCard = new \Hyperwallet\Model\BankCard();
+$bankCard->setToken($bankCardToken);
+$bankCard->setDateOfExpiry(new \DateTime($dateOfExpiry, $UTC));
 
 try {
     $bankCard = $hyperwallet->updateBankCard($userToken, $bankCard);

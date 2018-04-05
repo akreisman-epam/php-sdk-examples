@@ -14,13 +14,7 @@ $paperCheck
 	->setBankAccountRelationship(\Hyperwallet\Model\PaperCheck::BANK_ACCOUNT_RELATIONSHIP_SELF)
 	->setProfileType(\Hyperwallet\Model\PaperCheck::PROFILE_TYPE_INDIVIDUAL)
 	->setTransferMethodCountry('US')
-	->setTransferMethodCurrency('USD')
-	->setCity('NY')
-	->setCountry('US')
-	->setShippingMethod(\Hyperwallet\Model\PaperCheck::SHIPPING_METHOD_STANDARD)
-	->setStateProvince('IO')
-	->setPostalCode('12345')
-    ->setAddressLine1('88th str');
+	->setTransferMethodCurrency('USD');
 
 try {
     $paperCheck = $hyperwallet->createPaperCheck($userToken, $paperCheck);

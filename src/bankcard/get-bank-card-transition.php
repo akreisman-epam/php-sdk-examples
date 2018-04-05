@@ -1,14 +1,14 @@
 <?php
 require_once (dirname(__FILE__) . '/../../vendor/autoload.php');
 
-$username = $argv[2];
-$password = $argv[3];
-$programToken = urldecode($argv[4]);
-$userToken = urldecode($argv[5]);
-$bankCardToken = urldecode($argv[6]);
-$statusTransitionToken = urldecode($argv[7]);
+$username = $argv[1];
+$password = $argv[2];
+$programToken = urldecode($argv[3]);
+$userToken = urldecode($argv[4]);
+$bankCardToken = urldecode($argv[5]);
+$statusTransitionToken = urldecode($argv[6]);
 
-$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password);
+$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken);
 
 try {
     $paymentStatus = $hyperwallet->getBankCardStatusTransition($userToken, $bankCardToken, $statusTransitionToken);

@@ -10,7 +10,7 @@ $statusTransitionToken = urldecode($argv[5]);
 $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password);
 
 try {
-    $paymentStatus = $hyperwallet->getUserStatusTransition($paymentToken, $statusTransitionToken);
+    $paymentStatus = $hyperwallet->getUserStatusTransition($userToken, $statusTransitionToken);
     echo Utils\Utils::toJson($paymentStatus);
     echo "\n";
 } catch (\Hyperwallet\Exception\HyperwalletException $e) {

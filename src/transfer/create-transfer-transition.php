@@ -9,7 +9,7 @@ $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password);
 
 $transferStatusTransition = new \Hyperwallet\Model\TransferStatusTransition();
 $transferStatusTransition
-    ->setTransition(\Hyperwallet\Model\TransferStatusTransition::SCHEDULED);
+    ->setTransition(\Hyperwallet\Model\TransferStatusTransition::TRANSITION_SCHEDULED);
 
 try {
     $transfer = $hyperwallet->createTransferStatusTransition($transferToken, $transferStatusTransition);

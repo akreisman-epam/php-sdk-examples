@@ -3,8 +3,8 @@ require_once (dirname(__FILE__) . '/../../vendor/autoload.php');
 
 $username = $argv[1];
 $password = $argv[2];
-$userToken = urldecode($argv[4]);
-$transferToken = urldecode($argv[5]);
+$programToken = urldecode($argv[3]);
+$transferToken = urldecode($argv[4]);
 
 $hyperwallet = new \Hyperwallet\Hyperwallet($username, $password);
 

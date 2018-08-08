@@ -7,8 +7,14 @@ $programToken = urldecode($argv[3]);
 $userToken = urldecode($argv[4]);
 $bankCardToken = urldecode($argv[5]);
 $statusTransitionToken = urldecode($argv[6]);
+$encryptionEnabled = $argv[7];
 
-$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, $programToken);
+$encryptionData;
+if ($encryptionEnabled == 'true') {
+    $encryptionData = array('clientPrivateKeySetLocation' => Utils\Utils::CLIENT_PRIVATE_KEYSET_PATH,
+        'hyperwalletKeySetLocation' => Utils\Utils::HYPERWALLET_KEYSET_PATH);
+}
+$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, null, 'https://sandbox.hyperwallet.com', $encryptionData);
 
 try {
     $paymentStatus = $hyperwallet->getBankCardStatusTransition($userToken, $bankCardToken, $statusTransitionToken);

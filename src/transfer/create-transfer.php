@@ -6,8 +6,14 @@ $password = $argv[2];
 $programToken = urldecode($argv[3]);
 $sourceToken = urldecode($argv[4]);
 $destinationToken = urldecode($argv[5]);
+$encryptionEnabled = $argv[6];
 
-$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password);
+$encryptionData;
+if ($encryptionEnabled == 'true') {
+    $encryptionData = array('clientPrivateKeySetLocation' => Utils\Utils::CLIENT_PRIVATE_KEYSET_PATH,
+        'hyperwalletKeySetLocation' => Utils\Utils::HYPERWALLET_KEYSET_PATH);
+}
+$hyperwallet = new \Hyperwallet\Hyperwallet($username, $password, null, 'https://sandbox.hyperwallet.com', $encryptionData);
 
 date_default_timezone_set('UTC');
 $transfer = new \Hyperwallet\Model\Transfer();

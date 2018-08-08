@@ -7,7 +7,7 @@
         }
     ],
     "autoload": {
-      "psr-4": { "Utils\\": "src/Utils" }
+      "psr-4": { "Utils\\": "src/Utils", "ComposerScript\\" : "src/ComposerScript" }
 
     },
     "repositories": [{
@@ -17,6 +17,11 @@
     "require": {
       "hyperwallet/sdk":"dev-master",
       "php": ">=5.5.9",
-      "guzzlehttp/guzzle": "^6.2"
+      "guzzlehttp/guzzle": "^6.2",
+      "phpseclib/phpseclib": "^2.0.11",
+      "gree/jose": "^2.2.1"
+    },
+    "scripts": {
+      "post-install-cmd": "ComposerScript\\RsaOaep256AlgorithmInstaller::install"
     }
 }
